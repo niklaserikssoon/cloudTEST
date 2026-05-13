@@ -1,7 +1,7 @@
 name: Build and Deploy to Azure Container Apps
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 env:
   AZURE_CONTAINER_REGISTRY: "crcontainercloudnativeinventory"
