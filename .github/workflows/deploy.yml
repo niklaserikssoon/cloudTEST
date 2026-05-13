@@ -26,7 +26,7 @@ jobs:
         context: CloudNativeApp.Api
         push: true
         tags: ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_APP_NAME }}:${{ github.sha }}
-        file: CloudNativeApp.Api/Dockerfile
+        file: CloudNativveApp.Api/Dockerfile
     - name: Azure Login
       uses: azure/login@v2
       with:
