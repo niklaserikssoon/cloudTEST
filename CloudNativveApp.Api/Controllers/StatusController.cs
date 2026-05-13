@@ -31,4 +31,15 @@ public class StatusController : ControllerBase
 
         return Ok(new { SecretMessage = secretValue });
     }
+
+    [HttpGet("config")]
+    public IActionResult GetConfig()
+    {
+        var configValue = _configuration["AppConfig"];
+        if (string.IsNullOrEmpty(configValue))
+        {
+            return NotFound("Ingen konfiguration hittades.");
+        }
+        return Ok(new { ConfigMessage = configValue });
+    }
 }
