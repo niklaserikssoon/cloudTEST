@@ -23,9 +23,10 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v6
       with:
+        context: CloudNativeApp.Api
         push: true
         tags: ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_APP_NAME }}:${{ github.sha }}
-        file: CloudNativeInventory.Api/Dockerfile
+        file: CloudNativeApp.Api/Dockerfile
     - name: Azure Login
       uses: azure/login@v2
       with:
