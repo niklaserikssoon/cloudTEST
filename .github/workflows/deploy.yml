@@ -36,8 +36,8 @@ jobs:
     - name: Build and push container image to ACR
       uses: docker/build-push-action@v6
       with:
-        context: .
-        file: ./Dockerfile
+        context: ./CloudNativveApp.Api
+        file: ./CloudNativveApp.Api/Dockerfile
         push: true
         # Taggar imagen med Git Commit SHA f�r total sp�rbarhet
         tags: ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_APP_NAME }}:${{ github.sha }}
