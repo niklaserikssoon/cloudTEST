@@ -1,4 +1,10 @@
+using Azure.Identity;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Configuration.AddAzureKeyVault(
+    new Uri("https://kvstudentfwdvhunj3mx3s.vault.azure.net/"),
+    new DefaultAzureCredential());
 
 builder.Services.AddControllers();
 
