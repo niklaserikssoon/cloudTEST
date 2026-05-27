@@ -13,7 +13,7 @@ env:
   # OBS: Uppdatera detta till det faktiska namnet p� ditt nyskapade ACR
   AZURE_CONTAINER_REGISTRY: 'acrstudentfwdvhunj3mx3s'
   CONTAINER_APP_NAME: 'ca-cloudnative-api'
-  RESOURCE_GROUP: 'rg-cloudnative-dev'
+  RESOURCE_GROUP: 'rg-bicep-student2'
 
 jobs:
   deploy:
