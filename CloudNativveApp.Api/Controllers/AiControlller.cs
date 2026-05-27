@@ -33,6 +33,7 @@ public class AiController : ControllerBase
         // Prompt engineering best practices
 
         // 1. Identity & Instructions (System/Developer Message och "Zero Trust"-principen)
+        // test kommentar
         string systemMessage = "Du är en professionell AI-assistent för CloudNativeApp. " +
                                "Du övervakar plattformshälsa, säkerhet och användardata. " +
                                "Du svarar endast i JSON-format. " +
