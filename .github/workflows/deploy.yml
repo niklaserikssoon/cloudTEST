@@ -1,24 +1,24 @@
 name: .NET CD Pipeline
 
 on:
-  # Triggar denna pipeline enbart när CI-pipelinen har körts klart
+  # Triggar denna pipeline enbart nï¿½r CI-pipelinen har kï¿½rts klart
   workflow_run:
     workflows: [".NET CI Pipeline"]
     types:
       - completed
-  # Tillåter även att vi klickar igång den manuellt via GitHubs gränssnitt
+  # Tillï¿½ter ï¿½ven att vi klickar igï¿½ng den manuellt via GitHubs grï¿½nssnitt
   workflow_dispatch:
 
 env:
-  # OBS: Uppdatera detta till det faktiska namnet på ditt nyskapade ACR
-  AZURE_CONTAINER_REGISTRY: 'acrcloudnative<din-unika-sträng>'
+  # OBS: Uppdatera detta till det faktiska namnet pï¿½ ditt nyskapade ACR
+  AZURE_CONTAINER_REGISTRY: 'acrstudentfwdvhunj3mx3s'
   CONTAINER_APP_NAME: 'ca-cloudnative-api'
   RESOURCE_GROUP: 'rg-cloudnative-dev'
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    # Körs ENDAST om den föregående CI-pipelinen lyste grönt (success)
+    # Kï¿½rs ENDAST om den fï¿½regï¿½ende CI-pipelinen lyste grï¿½nt (success)
     if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
 
     steps:
@@ -29,9 +29,9 @@ jobs:
       uses: docker/login-action@v3
       with:
         registry: ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io
-        # Hämtas säkert från GitHub Secrets för att undvika läckage
-        username: ${{ secrets.AZURE_REGISTRY_USERNAME }}
-        password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
+        # Hï¿½mtas sï¿½kert frï¿½n GitHub Secrets fï¿½r att undvika lï¿½ckage
+        username: ${{ secrets.ACR_USERNAME }}
+        password: ${{ secrets.ACR_PASSWORD }}
 
     - name: Build and push container image to ACR
       uses: docker/build-push-action@v6
@@ -39,7 +39,7 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        # Taggar imagen med Git Commit SHA för total spårbarhet
+        # Taggar imagen med Git Commit SHA fï¿½r total spï¿½rbarhet
         tags: ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_APP_NAME }}:${{ github.sha }}
 
     - name: Azure Login
